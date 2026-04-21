@@ -110,7 +110,7 @@ nav ul li a:hover { color: var(--accent); }
 }
 
 /* Education Section */
-#education {
+#education, #certifications {
     padding: 100px 10%;
 }
 
@@ -142,6 +142,15 @@ nav ul li a:hover { color: var(--accent); }
 }
 
 .card-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+
+.certification-logo img {
+    display: block;
+    width: 15rem;
+    margin: auto;
+}
+.ccna {
+    margin-top: 2.5rem;
+}
 
 /* Footer */
 footer {
@@ -209,6 +218,7 @@ footer {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 
 /* Responsive adjustment for small screens */
 @media (max-width: 768px) {
