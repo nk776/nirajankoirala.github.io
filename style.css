@@ -42,6 +42,66 @@ nav {
     z-index: 100;
 }
 
+/* --- Hamburger Menu Logic --- */
+
+/* Hide hamburger on desktop */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 101;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Show on mobile */
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%; /* Hide off-screen */
+        top: 0;
+        flex-direction: column;
+        background: rgba(2, 6, 23, 0.98);
+        backdrop-filter: blur(15px);
+        width: 70%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in */
+    }
+
+    /* Transform Burger to 'X' */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    nav ul li {
+        margin-left: 0; /* Reset desktop margin */
+    }
+}
+
 .logo {
     font-size: 1.8rem;
     font-weight: 800;
