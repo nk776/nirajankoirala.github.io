@@ -41,6 +41,10 @@ nav {
     top: 0;
     z-index: 100;
 }
+nav a {
+    text-decoration: none;
+    color: white;
+}
 
 /* --- Hamburger Menu Logic --- */
 
@@ -123,8 +127,8 @@ nav ul li a {
 
 nav ul li a:hover { color: var(--accent); }
 
-/* Hero Section */
-#hero {
+/* home Section */
+#home {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -133,12 +137,12 @@ nav ul li a:hover { color: var(--accent); }
     padding: 0 20px;
 }
 
-#hero h1 {
+#home h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
     margin-bottom: 0.5rem;
 }
 
-#hero h1 span { color: var(--accent); }
+#home h1 span { color: var(--accent); }
 
 .typewriter {
     font-family: monospace;
