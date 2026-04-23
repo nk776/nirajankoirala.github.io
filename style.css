@@ -223,13 +223,21 @@ footer {
     text-align: center;
 }
 
-.email-link {
+.icon img {
+    width: 2rem;
+}
+
+.email-link, .links {
     display: block;
     font-size: 1.5rem;
     color: var(--accent);
     text-decoration: none;
     margin: 1.5rem 0;
     font-weight: 600;
+}
+
+.footer-content .links {
+    letter-spacing: 1rem;
 }
 
 .copyright {
@@ -282,6 +290,8 @@ footer {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+
 
 
 /* Responsive adjustment for small screens */
