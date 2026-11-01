@@ -47,10 +47,6 @@
     box-sizing: border-box;
 }
 
-.admin-pic {
-    width: 10rem;
-    border-radius: 50%;
-}
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -88,6 +84,11 @@ nav {
 nav a {
     text-decoration: none;
     color: var(--logo-color);
+}
+
+.admin-pic {
+    width: 10rem;
+    border-radius: 50%;
 }
 
 .logo {
