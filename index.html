@@ -3,30 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirajan Koirala | Programmer</title>
+    <meta name="description" content="Nirajan Koirala is a programmer and tech enthusiast with CCNA and CompTIA A+ certifications, IT diplomas from Sydney and a BBA in progress at UPEI.">
+    <meta name="author" content="Nirajan Koirala">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://nirajankoirala.com.np/">
+    <meta name="theme-color" content="#e3e3e3">
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Signal, Slack, Discord...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Nirajan Koirala">
+    <meta property="og:title" content="Nirajan Koirala | Programmer &amp; Tech Enthusiast">
+    <meta property="og:description" content="Nirajan Koirala is a programmer and tech enthusiast with CCNA and CompTIA A+ certifications, IT diplomas from Sydney and a BBA in progress at UPEI.">
+    <meta property="og:url" content="https://nirajankoirala.com.np/">
+    <meta property="og:image" content="https://nirajankoirala.com.np/media/images/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Nirajan Koirala - Programmer and Tech Enthusiast">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nirajan Koirala | Programmer &amp; Tech Enthusiast">
+    <meta name="twitter:description" content="Nirajan Koirala is a programmer and tech enthusiast with CCNA and CompTIA A+ certifications, IT diplomas from Sydney and a BBA in progress at UPEI.">
+    <meta name="twitter:image" content="https://nirajankoirala.com.np/media/images/og-image.png">
+    <meta name="twitter:image:alt" content="Nirajan Koirala - Programmer and Tech Enthusiast">
+
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <title>Nirajan Koirala | Programmer &amp; Tech Enthusiast</title>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://nirajankoirala.com.np/#website",
+      "url": "https://nirajankoirala.com.np/",
+      "name": "Nirajan Koirala",
+      "description": "Nirajan Koirala is a programmer and tech enthusiast with CCNA and CompTIA A+ certifications, IT diplomas from Sydney and a BBA in progress at UPEI.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://nirajankoirala.com.np/#person"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://nirajankoirala.com.np/#webpage",
+      "url": "https://nirajankoirala.com.np/",
+      "name": "Nirajan Koirala | Programmer & Tech Enthusiast",
+      "isPartOf": {
+        "@id": "https://nirajankoirala.com.np/#website"
+      },
+      "about": {
+        "@id": "https://nirajankoirala.com.np/#person"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://nirajankoirala.com.np/media/images/og-image.png",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://nirajankoirala.com.np/#person",
+      "name": "Nirajan Koirala",
+      "url": "https://nirajankoirala.com.np/",
+      "image": "https://nirajankoirala.com.np/media/images/og-image.png",
+      "jobTitle": "Programmer",
+      "email": "mailto:contact@nirajankoirala.com.np",
+      "sameAs": [
+        "https://www.linkedin.com/in/njkoirala/"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Sydney City College of Management"
+      },
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Prince Edward Island"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Cisco Certified Network Associate (CCNA)",
+          "credentialCategory": "certification"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CompTIA A+",
+          "credentialCategory": "certification"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script>
+        // Apply saved theme before first paint; light by default on first launch
+        (function () {
+            var theme = 'light';
+            try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'dark') theme = saved;
+            } catch (e) {}
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
     <canvas id="canvas-bg"></canvas>
 
     <header>
-        <nav>
+        <nav aria-label="Main">
         <a href="#home">
     <div class="logo">NK<span>.</span></div> </a>
     
-    <div class="hamburger" id="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
+<div class="nav-right">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
 
-    <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#aboutme">About Me</a></li>
-    </ul>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#aboutme">About Me</a></li>
+        </ul>
+    </div>
 </nav>
     </header>
 
@@ -34,7 +154,7 @@
         <section id="home">
             <div class="home-content">
                 <h1 class="fade-in">Hi, I'm <span>Nirajan Koirala</span></h1>
-                <p class="typewriter">Programmer & Tech Enthusiast</p>
+                <p class="typewriter">Programmer &amp; Tech Enthusiast</p>
                 <div class="home-btns fade-in">
                     <a href="mailto:contact@nirajankoirala.com.np" class="btn">Get In Touch</a>
                 </div>
@@ -70,13 +190,16 @@
             <div class="card-container">
                 <div class="card reveal current">
                 <div class="status-badge">Completed</div>
-                <div class="card-icon certification-logo ccna"><img src="media/images/ccna.png"></div>
+                <div class="card-icon certification-logo ccna">
+                    <img class="logo-dark" src="media/images/ccna.png" width="611" height="408" alt="CCNA certification badge" loading="lazy">
+                    <img class="logo-light" src="media/images/ccna-light.png" width="611" height="408" alt="CCNA certification badge" loading="lazy">
+                </div>
                 <h3>CCNA</h3>
                 <p></p>
             </div>
                 <div class="card reveal">
                     <div class="status-badge">Completed</div>
-                    <div class="card-icon  certification-logo"><img src="media/images/a-logo.png"></div>
+                    <div class="card-icon  certification-logo"><img src="media/images/a-logo.png" width="387" height="327" alt="CompTIA A+ certification badge" loading="lazy"></div>
                     <h3>CompTIA A+</h3>
                     <p></p>
                 </div>
@@ -91,10 +214,10 @@
             <h2>Let's Connect</h2>
             <p>I'm always open to discussing new projects or opportunities.</p>
             <div class="links">
-                <a href="https://www.linkedin.com/in/njkoirala/" class="icon" target="_blank" title="Linkedin"><img src="media/icons/linkedin.png"></a> 
-                <a href="mailto:contact@nirajankoirala.com.np" class="icon" title="Email: contact@nirajankoirala.com.np"><img src="media/icons/email.png"></a>
-                <a href="https://wa.me/qr/VMCNYMXUNX6GP1" class="icon" target="_blank" title="Whatsapp"><img src="media/icons/whatsapp.png"></a>
-                <a href="https://signal.me/#eu/OIbnpk9rrWnHEwkIId6frsdpZxSGYgEBMuXgnO-d6boxZBSee1pDaYhoStjDWJ1r" class="icon" target="_blank" title="Signal"><img src="media/icons/signal.png"></a>
+                <a href="https://www.linkedin.com/in/njkoirala/" class="icon" target="_blank" rel="noopener noreferrer" title="Linkedin"><img src="media/icons/linkedin.png" width="128" height="128" alt="LinkedIn" loading="lazy"></a> 
+                <a href="mailto:contact@nirajankoirala.com.np" class="icon" title="Email: contact@nirajankoirala.com.np"><img src="media/icons/email.png" width="128" height="128" alt="Email" loading="lazy"></a>
+                <a href="https://wa.me/qr/VMCNYMXUNX6GP1" class="icon" target="_blank" rel="noopener noreferrer" title="Whatsapp"><img src="media/icons/whatsapp.png" width="128" height="128" alt="WhatsApp" loading="lazy"></a>
+                <a href="https://signal.me/#eu/OIbnpk9rrWnHEwkIId6frsdpZxSGYgEBMuXgnO-d6boxZBSee1pDaYhoStjDWJ1r" class="icon" target="_blank" rel="noopener noreferrer" title="Signal"><img src="media/icons/signal.png" width="128" height="128" alt="Signal" loading="lazy"></a>
                 
             </div>
             <div class="email-link">contact@nirajankoirala.com.np</div>
