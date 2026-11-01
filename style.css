@@ -88,6 +88,8 @@ nav a {
 
 .admin-pic {
     width: 10rem;
+    height: 10rem;
+    object-fit: cover;
     border-radius: 50%;
 }
 
