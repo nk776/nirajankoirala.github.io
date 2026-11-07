@@ -181,8 +181,13 @@
                     if (result.debug) console.warn('Contact form debug:', result.debug);
                     throw new Error(reason || 'failed');
                 }
+                const wantsCopy = data.get('copy') === 'on';
+                if (wantsCopy) console.info('Copy email:', result.copyNote);
+                if (result.debug) console.warn('Contact form debug:', result.debug);
                 form.remove();
-                addMessage('bot', 'Thanks! Your message was sent' + (result.copy ? ', and a copy is on its way to your inbox' : '') + '. Nirajan will reply to ' + data.get('email') + '.');
+                addMessage('bot', 'Thanks! Your message was sent'
+                    + (result.copy ? ', and a copy is on its way to your inbox' : (wantsCopy ? ', but I could not email you a copy' : ''))
+                    + '. Nirajan will reply to ' + data.get('email') + '.');
             } catch (err) {
                 submit.disabled = false;
                 status.textContent = (reason || 'Sorry, that did not send.') + ' Please email contact@nirajankoirala.com.np instead.';
