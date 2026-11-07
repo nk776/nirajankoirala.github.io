@@ -25,12 +25,15 @@
         root.dataset.theme = next;
         try { localStorage.setItem('theme', next); } catch (e) {}
         syncTheme();
+        if (reducedMotion.matches) render(false); // static background: redraw in the new color
     });
 
     // ---------- Background: floating particles ----------
     const canvas = document.getElementById('canvas-bg');
     const ctx = canvas.getContext('2d');
-    const PARTICLE_COUNT = 60;
+    // Fewer particles on phones keeps the animation smooth and saves battery
+    const particleCount = () => (window.innerWidth < 768 ? 30 : 60);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let particles = [];
 
     class Particle {
@@ -63,24 +66,40 @@
     function initCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+        particles = Array.from({ length: particleCount() }, () => new Particle());
     }
 
-    function animate() {
+    function render(move) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = particleColor;
         for (const p of particles) {
-            p.update();
+            if (move) p.update();
             p.draw();
         }
+    }
+
+    function animate() {
+        render(true);
         requestAnimationFrame(animate);
     }
 
-    // Rebuild after resizing stops, not on every resize event
+    // Rebuild after resizing stops, not on every resize event.
+    // Ignore small height changes: on phones the address bar showing/hiding fires
+    // a resize while scrolling, and rebuilding then makes the particles jump.
     let resizeTimer;
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(initCanvas, 150);
+        resizeTimer = setTimeout(() => {
+            const widthChanged = window.innerWidth !== lastWidth;
+            const heightChanged = Math.abs(window.innerHeight - lastHeight) > 150;
+            if (!widthChanged && !heightChanged) return;
+            lastWidth = window.innerWidth;
+            lastHeight = window.innerHeight;
+            initCanvas();
+            if (reducedMotion.matches) render(false);
+        }, 150);
     });
 
     // ---------- Scroll reveal ----------
@@ -115,5 +134,7 @@
     // ---------- Start ----------
     syncTheme();
     initCanvas();
-    animate();
+    // People who ask their device for less motion get a still background
+    if (reducedMotion.matches) render(false);
+    else animate();
 })();
