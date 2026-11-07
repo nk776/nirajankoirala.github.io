@@ -173,12 +173,20 @@ nav ul li a:hover { color: var(--accent); }
    Home
    ========================================================================== */
 #home {
-    height: 100vh;
+    /* min-height (not height) so the content can grow past the screen instead of
+       being cut off; top padding keeps it clear of the fixed nav bar */
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 110px 20px 40px;
+}
+
+#home h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+    .btn { margin-top: 1.2rem; padding: 0.75rem 1.8rem; }
+    nav { padding-top: 0.8rem; padding-bottom: 0.8rem; }
 }
 
 #home h1 {
@@ -368,3 +376,8 @@ footer {
 
     .card-container { grid-template-columns: 1fr; }
 }
+
+/* Short screens (phones in landscape): smaller photo and tighter spacing */
+@media (max-height: 520px) {
+    #home { padding-top: 90px; }
+    .admin-pic { width: 6.5rem; height: 6.5rem; }
