@@ -4,8 +4,9 @@
     // After deploying the Worker, paste its URL here (see SETUP.md), e.g. https://nirajan-agent.yourname.workers.dev
     const API_URL = 'https://agent.nirajan-koirala.workers.dev';
 
-    const GREETING = "Hi, I'm Nirajan's AI assistant. Ask me about his education and certifications, or how to get in touch with him.";
-    const CHIPS = ['Who is Nirajan?', 'What are his certifications?', 'How can I contact Nirajan?'];
+    const GREETING = "Hi, I'm Nirajan's AI assistant. Ask me about his education and certifications, or leave a message for him here.";
+    const LEAVE_LABEL = 'Leave a message for Nirajan';
+    const CHIPS = ['Who is Nirajan?', 'What are his certifications?', LEAVE_LABEL];
     const MAX_LEN = 500;
 
     const history = []; // {role, content}
@@ -35,7 +36,7 @@
             <input type="text" maxlength="${MAX_LEN}" placeholder="Type your message\u2026" aria-label="Your message" autocomplete="off">
             <button type="submit">Send</button>
         </form>
-        <p class="agent-note">AI replies may contain mistakes. <a href="mailto:contact@nirajankoirala.com.np">Email Nirajan directly</a></p>`;
+        <p class="agent-note">AI replies may contain mistakes. <a href="#" class="agent-leave">Leave a message</a> &middot; <a href="mailto:contact@nirajankoirala.com.np">Email directly</a></p>`;
 
     document.body.append(fab, panel);
 
@@ -82,7 +83,7 @@
                 const b = document.createElement('button');
                 b.type = 'button';
                 b.textContent = label;
-                b.addEventListener('click', () => send(label));
+                b.addEventListener('click', () => (label === LEAVE_LABEL ? showContactForm() : send(label)));
                 chips.appendChild(b);
             }
         }
@@ -128,10 +129,65 @@
         }
     }
 
+    // ---------- Leave a message (emails Nirajan) ----------
+    function showContactForm() {
+        const existing = log.querySelector('.agent-contact');
+        if (existing) { existing.querySelector('input').focus(); return; }
+        chips.remove();
+
+        const form = document.createElement('form');
+        form.className = 'agent-msg bot agent-contact';
+        form.innerHTML = `
+            <strong>Leave a message for Nirajan</strong>
+            <label>Your name<input name="name" maxlength="80" required autocomplete="name"></label>
+            <label>Your email<input name="email" type="email" maxlength="200" required autocomplete="email"></label>
+            <label>Message<textarea name="message" rows="4" maxlength="1500" required></textarea></label>
+            <input class="agent-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="agent-contact-actions">
+                <button type="submit">Send message</button>
+                <button type="button" class="agent-cancel">Cancel</button>
+            </div>
+            <p class="agent-contact-status" role="status"></p>`;
+        log.appendChild(form);
+        log.scrollTop = log.scrollHeight;
+        form.querySelector('input').focus();
+
+        form.querySelector('.agent-cancel').addEventListener('click', () => { form.remove(); input.focus(); });
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const status = form.querySelector('.agent-contact-status');
+            const submit = form.querySelector('button[type="submit"]');
+            submit.disabled = true;
+            status.textContent = 'Sending\u2026';
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'contact',
+                        name: data.get('name'),
+                        email: data.get('email'),
+                        message: data.get('message'),
+                        website: data.get('website'),
+                    }),
+                });
+                const result = await res.json();
+                if (!res.ok || !result.ok) throw new Error(result.error || 'failed');
+                form.remove();
+                addMessage('bot', 'Thanks! Your message was sent. Nirajan will reply to ' + data.get('email') + '.');
+            } catch (err) {
+                submit.disabled = false;
+                status.textContent = 'Sorry, that did not send. Please email contact@nirajankoirala.com.np instead.';
+            }
+        });
+    }
+
     // ---------- Events ----------
     fab.addEventListener('click', openPanel);
     panel.querySelector('.agent-close').addEventListener('click', closePanel);
     form.addEventListener('submit', (e) => { e.preventDefault(); send(input.value); });
+    panel.querySelector('.agent-leave').addEventListener('click', (e) => { e.preventDefault(); showContactForm(); });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
     });
