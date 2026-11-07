@@ -142,6 +142,7 @@
             <label>Your name<input name="name" maxlength="80" required autocomplete="name"></label>
             <label>Your email<input name="email" type="email" maxlength="200" required autocomplete="email"></label>
             <label>Message<textarea name="message" rows="4" maxlength="1500" required></textarea></label>
+            <label class="agent-check"><input type="checkbox" name="copy" checked> Email me a copy of my message</label>
             <input class="agent-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="agent-contact-actions">
                 <button type="submit">Send message</button>
@@ -160,6 +161,7 @@
             const submit = form.querySelector('button[type="submit"]');
             submit.disabled = true;
             status.textContent = 'Sending\u2026';
+            let reason = '';
             try {
                 const res = await fetch(API_URL, {
                     method: 'POST',
@@ -169,16 +171,21 @@
                         name: data.get('name'),
                         email: data.get('email'),
                         message: data.get('message'),
+                        copy: data.get('copy') === 'on',
                         website: data.get('website'),
                     }),
                 });
                 const result = await res.json();
-                if (!res.ok || !result.ok) throw new Error(result.error || 'failed');
+                if (!res.ok || !result.ok) {
+                    reason = result.error || '';
+                    if (result.debug) console.warn('Contact form debug:', result.debug);
+                    throw new Error(reason || 'failed');
+                }
                 form.remove();
-                addMessage('bot', 'Thanks! Your message was sent. Nirajan will reply to ' + data.get('email') + '.');
+                addMessage('bot', 'Thanks! Your message was sent' + (result.copy ? ', and a copy is on its way to your inbox' : '') + '. Nirajan will reply to ' + data.get('email') + '.');
             } catch (err) {
                 submit.disabled = false;
-                status.textContent = 'Sorry, that did not send. Please email contact@nirajankoirala.com.np instead.';
+                status.textContent = (reason || 'Sorry, that did not send.') + ' Please email contact@nirajankoirala.com.np instead.';
             }
         });
     }
@@ -191,6 +198,12 @@
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
     });
+    // Any element with data-leave-message opens the chat straight on the "Leave a message" form (e.g. the Contact button)
+    document.querySelectorAll('[data-leave-message]').forEach((el) => el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPanel();
+        showContactForm();
+    }));
     // Any element with data-open-agent opens the chat (e.g. the hero button)
     document.querySelectorAll('[data-open-agent]').forEach((el) => el.addEventListener('click', openPanel));
 })();
