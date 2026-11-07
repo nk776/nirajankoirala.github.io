@@ -2,7 +2,7 @@
     'use strict';
 
     // After deploying the Worker, paste its URL here (see SETUP.md), e.g. https://nirajan-agent.yourname.workers.dev
-    const API_URL = 'agent.nirajan-koirala.workers.dev';
+    const API_URL = 'https://agent.nirajan-koirala.workers.dev';
 
     const GREETING = "Hi, I'm Nirajan's AI assistant. Ask me about his education and certifications, or how to get in touch with him.";
     const CHIPS = ['Who is Nirajan?', 'What are his certifications?', 'How can I contact Nirajan?'];
