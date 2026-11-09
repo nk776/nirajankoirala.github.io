@@ -227,7 +227,7 @@ nav ul li a:hover { color: var(--accent); }
 /* ==========================================================================
    Education & Certifications
    ========================================================================== */
-#education, #certifications {
+#aboutme, #education, #experience, #skills, #projects, #certifications {
     padding: 100px 10%;
 }
 
@@ -294,6 +294,51 @@ nav ul li a:hover { color: var(--accent); }
 
 .ccna { margin-top: 2.5rem; }
 
+/* ==========================================================================
+   About Me, Experience, Skills & Projects
+   ========================================================================== */
+.about-text {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.about-text p + p { margin-top: 1.2rem; }
+
+/* A button that looks like an inline text link */
+.link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Two cards per row (Experience, Skills, Projects) */
+.card-container.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* Skill / technology pills */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin-top: 1.2rem;
+}
+.tags li {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    border: 1px solid var(--card-border);
+    background: var(--card-current-bg);
+}
+
 /* The CCNA logo has white lettering, so the light theme uses a recolored copy */
 .ccna .logo-light { display: none; }
 [data-theme="light"] .ccna .logo-dark { display: none; }
@@ -347,7 +392,7 @@ footer {
 /* ==========================================================================
    Mobile
    ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 1180px) {
     .hamburger { display: flex; }
 
     .nav-links {
@@ -358,7 +403,7 @@ footer {
         background: var(--menu-bg);
         -webkit-backdrop-filter: blur(15px);
         backdrop-filter: blur(15px);
-        width: 70%;
+        width: min(70%, 320px);
         height: 100vh;
         height: 100dvh; /* real visible height on phones (excludes the browser bar) */
         justify-content: center;
@@ -375,7 +420,16 @@ footer {
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    .card-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .card-container,
+    .card-container.grid-2 { grid-template-columns: 1fr; }
+}
+
+/* A little more room for the eight menu links on mid-sized desktops */
+@media (min-width: 1181px) and (max-width: 1320px) {
+    nav ul li { margin-left: 1.5rem; }
 }
 
 /* Short screens (phones in landscape): smaller photo and tighter spacing */
@@ -387,4 +441,9 @@ footer {
 @media (prefers-reduced-motion: reduce) {
     .typewriter { animation: none; border-right-color: transparent; }
     .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Phone in landscape with the menu open: eight links need to scroll instead of being cut off */
+@media (max-width: 1180px) and (max-height: 520px) {
+    .nav-links { justify-content: flex-start; gap: 1rem; padding-top: 4.5rem; overflow-y: auto; }
 }

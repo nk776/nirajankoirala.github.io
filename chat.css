@@ -23,6 +23,8 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .agent-fab:hover { transform: translateY(-3px); }
+/* The open phone menu needs the whole screen: the chat button would cover its last link */
+body.menu-open .agent-fab { display: none; }
 .agent-fab svg { width: 20px; height: 20px; }
 .agent-fab[aria-expanded="true"] { display: none; }
 

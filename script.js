@@ -122,6 +122,7 @@
         hamburger.classList.toggle('active', open);
         navLinks.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open);
+        document.body.classList.toggle('menu-open', open); // lets CSS hide the chat button while the menu is open
     }
 
     hamburger.addEventListener('click', () => setMenu(!navLinks.classList.contains('active')));
